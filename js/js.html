@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh JavaScript</title>
+</head>
+<body>
+    <h1>Contoh Program JavaScript: Variabel dan Operator</h1>
+    <p>Buka console (tekan F12 atau klik kanan -> Inspect -> Console) untuk melihat output.</p>
+
+    <script>
+        // Paste kode JavaScript di sini
+        // Deklarasi variabel
+        let nama = "Budi";
+        let umur = 25;
+        let tinggi = 170.5;
+        let apakahMahasiswa = true;
+
+        // Menggunakan operator aritmatika
+        let tahunLahir = 2024 - umur;
+        let tinggiInch = tinggi / 2.54;
+
+        // Menggunakan operator perbandingan dan logika
+        let apakahDewasa = umur >= 18 && tinggi > 160;
+
+        // Menggunakan operator string
+        let pesan = "Halo, " + nama + "!";
+
+        // Menampilkan hasil
+        console.log(pesan);
+        console.log("Umur:", umur, "tahun");
+        console.log("Tahun lahir:", tahunLahir);
+        console.log("Tinggi:", tinggi, "cm", "atau", tinggiInch.toFixed(2), "inch");
+        console.log("Apakah mahasiswa?", apakahMahasiswa);
+        console.log("Apakah dewasa?", apakahDewasa);
+
+        // Menggunakan operator increment
+        umur++;
+        console.log("Umur tahun depan:", umur);
+
+        // Menggunakan operator ternary
+        let status = apakahMahasiswa ? "Mahasiswa" : "Bukan Mahasiswa";
+        console.log("Status:", status);
+    </script>
+</body>
+</html>

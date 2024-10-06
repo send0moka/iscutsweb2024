@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Images */
+        .responsive-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .image-container {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        /* Picture Element untuk Art Direction */
+        picture {
+            display: block;
+            margin: 20px 0;
+        }
+
+        /* Responsive Text dengan Fluid Typography */
+        .fluid-text {
+            font-size: clamp(1rem, 2vw + 0.5rem, 2rem);
+        }
+
+        /* Pseudo Classes */
+        .btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Links dengan berbagai state */
+        a:link { color: #007bff; }
+        a:visited { color: #6610f2; }
+        a:hover { color: #0056b3; }
+        a:active { color: #003580; }
+
+        /* Attribute Selectors */
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
+        [data-type="primary"] {
+            background-color: #007bff;
+        }
+
+        [title~="important"] {
+            border: 2px solid red;
+        }
+
+        /* Pseudo Elements */
+        .quote::before {
+            content: """;
+            font-size: 2em;
+            color: #007bff;
+        }
+
+        .quote::after {
+            content: """;
+            font-size: 2em;
+            color: #007bff;
+        }
+
+        .custom-list li::marker {
+            content: "👉 ";
+        }
+
+        /* Complex Selector Combinations */
+        .container > .direct-child {
+            border: 2px solid blue;
+        }
+
+        .parent .descendant {
+            background-color: #f0f0f0;
+        }
+
+        /* Combinators */
+        h2 + p {
+            font-weight: bold; /* Adjacent sibling */
+        }
+
+        h2 ~ p {
+            color: #666; /* General sibling */
+        }
+
+        /* Responsive Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid-item {
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+        }
+
+        /* Media Queries untuk Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .grid-item {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fluid-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo Responsive Design & CSS Selectors</h1>
+
+    <!-- Responsive Images -->
+    <section>
+        <h2>Responsive Images</h2>
+        <div class="image-container">
+            <img src="https://picsum.photos/800/400" alt="Responsive Image" class="responsive-image">
+        </div>
+
+        <picture>
+            <source media="(min-width: 800px)" srcset="https://picsum.photos/800/400">
+            <source media="(min-width: 400px)" srcset="https://picsum.photos/400/300">
+            <img src="https://picsum.photos/200/200" alt="Art Direction" class="responsive-image">
+        </picture>
+    </section>
+
+    <!-- Responsive Text -->
+    <section>
+        <h2>Responsive Text</h2>
+        <p class="fluid-text">This text will scale smoothly based on viewport width</p>
+    </section>
+
+    <!-- Pseudo Classes -->
+    <section>
+        <h2>Pseudo Classes</h2>
+        <button class="btn">Hover Me</button>
+        <a href="#" title="important link">Important Link</a>
+    </section>
+
+    <!-- Attribute Selectors -->
+    <section>
+        <h2>Attribute Selectors</h2>
+        <input type="text" placeholder="Type here...">
+        <div data-type="primary">Primary Element</div>
+    </section>
+
+    <!-- Pseudo Elements -->
+    <section>
+        <h2>Pseudo Elements</h2>
+        <p class="quote">This is a quote with decorative quotation marks</p>
+        <ul class="custom-list">
+            <li>Custom bullet points</li>
+            <li>Using pseudo elements</li>
+        </ul>
+    </section>
+
+    <!-- Complex Combinations -->
+    <section class="container">
+        <h2>Complex Combinations</h2>
+        <div class="direct-child">Direct Child</div>
+        <div>
+            <div class="descendant">Nested Descendant</div>
+        </div>
+    </section>
+
+    <!-- Responsive Grid -->
+    <section class="grid-container">
+        <div class="grid-item">Grid Item 1</div>
+        <div class="grid-item">Grid Item 2</div>
+        <div class="grid-item">Grid Item 3</div>
+    </section>
+</body>
+</html>

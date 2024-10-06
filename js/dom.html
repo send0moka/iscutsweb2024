@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Geometri</title>
+</head>
+<body>
+    <h1>Kalkulator Geometri</h1>
+    <select id="shapeSelect">
+        <option value="">Pilih bentuk</option>
+        <option value="persegi">Persegi</option>
+        <option value="lingkaran">Lingkaran</option>
+        <option value="segitiga">Segitiga</option>
+    </select>
+    <div id="inputFields"></div>
+    <button id="calculateBtn" style="display:none;">Hitung</button>
+    <div id="result"></div>
+
+    <script>
+        // DOM Elements
+        const shapeSelect = document.getElementById('shapeSelect');
+        const inputFields = document.getElementById('inputFields');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const result = document.getElementById('result');
+
+        // Event Listeners
+        shapeSelect.addEventListener('change', showInputFields);
+        calculateBtn.addEventListener('click', calculate);
+
+        // Functions
+        function showInputFields() {
+            const shape = shapeSelect.value;
+            inputFields.innerHTML = '';
+            calculateBtn.style.display = 'inline';
+
+            if (shape === 'persegi') {
+                inputFields.innerHTML = '<input type="number" id="sisi" placeholder="Sisi">';
+            } else if (shape === 'lingkaran') {
+                inputFields.innerHTML = '<input type="number" id="jariJari" placeholder="Jari-jari">';
+            } else if (shape === 'segitiga') {
+                inputFields.innerHTML = `
+                    <input type="number" id="alas" placeholder="Alas">
+                    <input type="number" id="tinggi" placeholder="Tinggi">
+                    <input type="number" id="sisiA" placeholder="Sisi A">
+                    <input type="number" id="sisiB" placeholder="Sisi B">
+                    <input type="number" id="sisiC" placeholder="Sisi C">
+                `;
+            } else {
+                calculateBtn.style.display = 'none';
+            }
+        }
+
+        function calculate() {
+            const shape = shapeSelect.value;
+            let luas, keliling;
+
+            // Control Flow (switch statement)
+            switch(shape) {
+                case 'persegi':
+                    const sisi = Number(document.getElementById('sisi').value);
+                    luas = hitungLuasPersegi(sisi);
+                    keliling = hitungKelilingPersegi(sisi);
+                    break;
+                case 'lingkaran':
+                    const jariJari = Number(document.getElementById('jariJari').value);
+                    luas = hitungLuasLingkaran(jariJari);
+                    keliling = hitungKelilingLingkaran(jariJari);
+                    break;
+                case 'segitiga':
+                    const alas = Number(document.getElementById('alas').value);
+                    const tinggi = Number(document.getElementById('tinggi').value);
+                    const sisiA = Number(document.getElementById('sisiA').value);
+                    const sisiB = Number(document.getElementById('sisiB').value);
+                    const sisiC = Number(document.getElementById('sisiC').value);
+                    luas = hitungLuasSegitiga(alas, tinggi);
+                    keliling = hitungKelilingSegitiga(sisiA, sisiB, sisiC);
+                    break;
+                default:
+                    result.innerHTML = 'Pilih bentuk terlebih dahulu!';
+                    return;
+            }
+
+            // Output result using template literals
+            result.innerHTML = `
+                <p>Luas ${shape}: ${luas.toFixed(2)}</p>
+                <p>Keliling ${shape}: ${keliling.toFixed(2)}</p>
+            `;
+        }
+
+        // Helper Functions
+        function hitungLuasPersegi(sisi) {
+            return sisi * sisi;
+        }
+
+        function hitungKelilingPersegi(sisi) {
+            return 4 * sisi;
+        }
+
+        function hitungLuasLingkaran(jariJari) {
+            return Math.PI * jariJari * jariJari;
+        }
+
+        function hitungKelilingLingkaran(jariJari) {
+            return 2 * Math.PI * jariJari;
+        }
+
+        function hitungLuasSegitiga(alas, tinggi) {
+            return 0.5 * alas * tinggi;
+        }
+
+        function hitungKelilingSegitiga(sisiA, sisiB, sisiC) {
+            return sisiA + sisiB + sisiC;
+        }
+    </script>
+</body>
+</html>

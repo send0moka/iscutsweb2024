@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events Demo</title>
+    <style>
+        .event-box { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+        #mouseArea { width: 200px; height: 100px; background-color: #f0f0f0; }
+        #eventLog { height: 150px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body onload="logEvent('Body loaded')">
+    <h1>HTML Events Demo</h1>
+
+    <div class="event-box">
+        <h3>Window Events</h3>
+        <button onclick="openNewWindow()">Open New Window</button>
+    </div>
+
+    <div class="event-box">
+        <h3>Form Events</h3>
+        <form onsubmit="handleSubmit(event)">
+            <input type="text" onfocus="logEvent('Input focused')" onblur="logEvent('Input blurred')" onchange="logEvent('Input changed')" placeholder="Type here...">
+            <select onchange="logEvent('Select changed')">
+                <option>Option 1</option>
+                <option>Option 2</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="event-box">
+        <h3>Keyboard Events</h3>
+        <input type="text" onkeydown="logEvent('Key down: ' + event.key)" onkeyup="logEvent('Key up: ' + event.key)" onkeypress="logEvent('Key press: ' + event.key)" placeholder="Type here...">
+    </div>
+
+    <div class="event-box">
+        <h3>Mouse Events</h3>
+        <div id="mouseArea" 
+             onmouseover="logEvent('Mouse over')" 
+             onmouseout="logEvent('Mouse out')" 
+             onclick="logEvent('Click')" 
+             ondblclick="logEvent('Double click')"
+             onmousedown="logEvent('Mouse down')"
+             onmouseup="logEvent('Mouse up')"
+             onmousemove="handleMouseMove(event)">
+            Interact with mouse here
+        </div>
+    </div>
+
+    <h3>Event Log</h3>
+    <div id="eventLog"></div>
+
+    <script>
+        function logEvent(message) {
+            const eventLog = document.getElementById('eventLog');
+            eventLog.innerHTML += message + '<br>';
+            eventLog.scrollTop = eventLog.scrollHeight;
+        }
+
+        function openNewWindow() {
+            window.open('https://youtube.com', 'Youtube', 'width=400,height=300');
+            logEvent('New window opened');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            logEvent('Form submitted');
+        }
+
+        function handleMouseMove(event) {
+            const mouseArea = document.getElementById('mouseArea');
+            const x = event.clientX - mouseArea.offsetLeft;
+            const y = event.clientY - mouseArea.offsetTop;
+            logEvent(`Mouse move: (${x}, ${y})`);
+        }
+
+        // Window events
+        window.onresize = function() {
+            logEvent('Window resized');
+        };
+
+        window.onscroll = function() {
+            logEvent('Window scrolled');
+        };
+    </script>
+</body>
+</html>

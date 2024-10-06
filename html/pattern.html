@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        input:invalid {
+            background-color: #ffdddd;
+        }
+        input:valid {
+            background-color: #ddffdd;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Contoh Validasi Pattern</h2>
+    
+    <!-- Contoh 1: NIM -->
+    <div class="form-group">
+        <label>NIM (Format: H1D022006):</label>
+        <input type="text" 
+               pattern="[A-Z][0-9][A-Z][0-9]{6}"
+               maxlength="9"
+               title="NIM harus 9 karakter: Huruf-Angka-Huruf-6Angka"
+               required>
+    </div>
+
+    <!-- Contoh 2: Nomor Telepon -->
+    <div class="form-group">
+        <label>Nomor Telepon Indonesia (+62):</label>
+        <input type="text" 
+               pattern="^\+62[0-9]{9,12}$"
+               title="Format: +62 diikuti 9-12 digit angka"
+               required>
+    </div>
+
+    <!-- Contoh 3: Plat Nomor Kendaraan -->
+    <div class="form-group">
+        <label>Plat Nomor (Contoh: B1234ABC):</label>
+        <input type="text" 
+               pattern="^[A-Z]{1,2}[0-9]{1,4}[A-Z]{1,3}$"
+               title="Format: 1-2 huruf, 1-4 angka, 1-3 huruf"
+               required>
+    </div>
+</body>
+</html>
